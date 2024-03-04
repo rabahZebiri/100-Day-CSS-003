@@ -1,0 +1,101 @@
+*{
+    box-sizing: border-box;
+    overflow: hidden;*/
+}
+:root{
+    --morning-blue:#7DDFFC;
+    --ground-color:#F0DE75;
+    --sun:#FFEF00;
+    --frame-background:#272C34;;
+    --pyramid:#F4F4F4;
+    --pyramid-shadow:#DDDADA;
+}
+body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.frame{
+    height: 400px;
+    width: 400px;
+    background-color: var(--frame-background);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.center-circle{
+    width: 180px;
+    height: 180px;
+    border-radius: 100%;
+    display: block;
+}
+.sky{
+    width: 100%;
+    height: 122px;
+    background-color: var(--morning-blue);
+    position: relative;
+}
+.sun{
+    width: 35px;
+    height: 35px;
+    border-radius: 100%;
+    background-color: var(--sun);
+    position: relative;
+    top: 172px;
+    left: 70px;
+    animation: sun-during-day 2.7s linear infinite;
+}
+.ground{
+    width: 100%;
+    height: 58px;
+    background-color: var(--ground-color);
+    z-index: 8;
+}
+.pyramid{
+    position: absolute;
+    height: 0px;
+    width: 0px;
+    border-top: 121px solid ;
+    border-right: 79px solid ;
+    transform: rotate(313deg);
+    top: 75px;
+    left: 65px;
+    animation: shadow-on-pyramid 2.7s ease-in-out infinite ;
+}
+.shadow{
+    height: 120px;
+    width:;
+}
+@keyframes sun-during-day{
+    0%{
+        transform: rotate(30deg) translate(-150px) ;  
+    }
+    100%{
+        transform: rotate(150deg) translate(-150px);
+    }
+
+}
+@keyframes shadow-on-pyramid{
+    0%{
+        border-right-color:var(--pyramid-shadow);
+        border-top-color:var(--pyramid);
+    }
+    89%{
+        border-right-color:var(--pyramid);
+        border-top-color:var(--pyramid-shadow);
+    }
+    100%{
+        border-right-color:var(--frame-background);
+        border-top-color:var(--frame-background);
+        animation:background-color 0.7s ease-in infinite;
+    }
+
+}
+@keyframes shadow-on-ground{
+    from{
+
+    }
+    to{
+
+    }
+}
