@@ -1,101 +1,188 @@
-*{
+* {
     box-sizing: border-box;
-    overflow: hidden;*/
-}
-:root{
-    --morning-blue:#7DDFFC;
-    --ground-color:#F0DE75;
-    --sun:#FFEF00;
-    --frame-background:#272C34;;
-    --pyramid:#F4F4F4;
+    overflow: hidden;
+  }
+  
+  :root {
+    --morning-blue: #7DDFFC;
+    --ground-color: #F0DE75;
+    --sun: #FFEF00;
+    --frame-background: #272C34;
+    --pyramid-shadow-on-ground:#57575780;
+    --pyramid: hsl(0, 0%, 96%);
     --pyramid-shadow:#DDDADA;
-}
-body{
+  }
+  
+  body {
     display: flex;
     align-items: center;
     justify-content: center;
-}
-.frame{
+  }
+  
+  .frame {
     height: 400px;
     width: 400px;
     background-color: var(--frame-background);
     display: flex;
     align-items: center;
     justify-content: center;
-}
-.center-circle{
-    width: 180px;
-    height: 180px;
+  }
+  
+  .center-circle {
+    width: 200px;
+    height: 200px;
     border-radius: 100%;
     display: block;
-}
-.sky{
+  }
+  
+  .sky {
     width: 100%;
     height: 122px;
     background-color: var(--morning-blue);
     position: relative;
-}
-.sun{
+    animation: the-night-sky 3.5s cubic-bezier(0.4, 0, 0.49, 1) infinite;
+  }
+  
+  .sun {
     width: 35px;
     height: 35px;
     border-radius: 100%;
     background-color: var(--sun);
     position: relative;
-    top: 172px;
+    top: 20px;
     left: 70px;
-    animation: sun-during-day 2.7s linear infinite;
-}
-.ground{
+    animation: sun-during-day 3.5s cubic-bezier(.4, 0, .49, 1) infinite;
+    transform-origin: 50% 400%;
+  }
+  
+  .ground {
     width: 100%;
-    height: 58px;
+    height: 90px;
     background-color: var(--ground-color);
     z-index: 8;
-}
-.pyramid{
+    animation: the-night-ground 3.5s cubic-bezier(.4, 0, .49, 1) infinite;
+  }
+  
+  .pyramid {
     position: absolute;
     height: 0px;
     width: 0px;
-    border-top: 121px solid ;
-    border-right: 79px solid ;
+    border-top: 121px solid;
+    border-right: 79px solid;
     transform: rotate(313deg);
     top: 75px;
     left: 65px;
-    animation: shadow-on-pyramid 2.7s ease-in-out infinite ;
-}
-.shadow{
-    height: 120px;
-    width:;
-}
-@keyframes sun-during-day{
+    animation: shadow-on-pyramid 3.5s cubic-bezier(.4, 0, .49, 1) infinite;
+  }
+  
+  .shadow {
+    width: 100%;
+    height: 100%;
+    animation: pyramid-shadow 3.5s cubic-bezier(.4, 0, .49, 1) infinite;
+    background-color:var(--pyramid-shadow-on-ground);
+    clip-path: polygon(74.23% 0%, 95.93% 48%, 15% -2%);
+  }
+  
+  @keyframes sun-during-day {
+    0% {
+      background: #F57209;
+      transform: rotate(-70deg);
+    }
+  
+    30% {
+      background: #FFEF00;
+      transform: rotate(-28deg);
+    }
+  
+    55% {
+      background: #FFEF00;
+    }
+  
+    100% {
+      background: #F57209;
+      transform: rotate(80deg) translate(80px);
+    }
+  }
+  
+  @keyframes shadow-on-pyramid {
+    0% {
+      border-right-color: var(--frame-background);
+      border-top-color: var(--frame-background);
+    }
+  
+    20% {
+      border-right-color: var(--pyramid-shadow);
+      border-top-color: var(--pyramid);
+    }
+  
+    40% {
+      border-right-color: var(--pyramid-shadow);
+      border-top-color: var(--pyramid);
+  
+    }
+  
+    75% {
+      border-right-color: var(--pyramid);
+      border-top-color: var(--pyramid-shadow);
+    }
+  
+    100% {
+      border-right-color: var(--frame-background);
+      border-top-color: var(--frame-background);
+    }
+  }
+  
+  @keyframes the-night-sky {
+    0% {
+      background-color: var(--frame-background);
+    }
+  
+    20% {
+      background-color: var(--morning-blue);
+    }
+  
+    75% {
+      background-color: var(--morning-blue);
+    }
+  
+    100% {
+      background-color: var(--frame-background);
+    }
+  }
+  
+  @keyframes the-night-ground {
+    0% {
+      background-color: var(--frame-background);
+    }
+  
+    20% {
+      background-color: var(--ground-color);
+    }
+  
+    75% {
+      background-color: var(--ground-color);
+    }
+  
+    100% {
+      background-color: var(--frame-background);
+    }
+  }
+  @keyframes pyramid-shadow{
     0%{
-        transform: rotate(30deg) translate(-150px) ;  
+      clip-path: polygon(74.23% 0%, 360% 48%, 15% -2%);
+      background-color: var(--frame-background);
+    }
+    20%{
+      background-color: var(--pyramid-shadow-on-ground);
+    }
+    30%{
+      clip-path:polygon(74.23% 0%, 105.93% 48%, 15% -2%);
+    }
+    75%{
+      background-color: var(--pyramid-shadow-on-ground);
     }
     100%{
-        transform: rotate(150deg) translate(-150px);
+      clip-path: polygon(74.23% 0%, -360% 48%, 15% -2%);
+      background-color: var(--frame-background);
     }
-
-}
-@keyframes shadow-on-pyramid{
-    0%{
-        border-right-color:var(--pyramid-shadow);
-        border-top-color:var(--pyramid);
-    }
-    89%{
-        border-right-color:var(--pyramid);
-        border-top-color:var(--pyramid-shadow);
-    }
-    100%{
-        border-right-color:var(--frame-background);
-        border-top-color:var(--frame-background);
-        animation:background-color 0.7s ease-in infinite;
-    }
-
-}
-@keyframes shadow-on-ground{
-    from{
-
-    }
-    to{
-
-    }
-}
+  }
